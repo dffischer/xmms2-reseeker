@@ -1,0 +1,56 @@
+.TH xmms2-reseeker 1 2014-06-27 XMMS2 General Commands Manual
+.SH NAME
+xmms2-reseeker \- Automatic pause rewinding client for xmms2
+.SH SYNOPSIS
+.B xmms2-reseeker
+.RB [ \-h ]
+.RI [ seconds ]
+.SH DESCRIPTION
+Audiobooks on your xmms2 playlist? Want to hear that part of the song right again? As long as this client is active, it seeks back a given number of
+.I seconds
+whenever the player resumes from a pause. The amount can be given as only command line argument and defaults to 5 when omitted.
+.SH OPTIONS
+.TP 8
+.B -h
+Causes the program to display a help text and exit immediately.
+.SH EXIT STATUS
+.TP 8
+.B 0
+would indicate a successful termination. This never happens. The program keeps running indefinitely.
+.TP 8
+.B 1
+is returned when invoked with the
+.I \-h
+option.
+.TP 8
+.B 2
+indicates a mistake in program usage, which normally indicates that the amount of seconds were no number.
+.TP 8
+.B 3
+reports an error from
+.IR  xmms2 .
+This happens, when the server returns erroneous values or a connection could not be established. Note that this can also indicate that the server shut down and the program terminates as it is of no further use.
+.SH EXAMPLE
+To have this client running whenever
+.I xmms2d
+runs, place a link to
+.I /usr/share/xmms2/scripts/startup.d/xmms2-reseeker.sh
+into
+.I CONFDIR/startup.d/
+with
+.I CONFDIR
+defined like in
+.BR xmms2d (1).
+To configure a custom amount of seconds, copy the linked file there instead and add the value at its end, resulting for example in the following.
+.sp
+.RS 4
+.nf
+#!/bin/sh
+exec /usr/bin/xmms2-reseeker 10
+.fi
+.SH BUGS
+This program is too trivial to feature any bug.
+.SH SEE ALSO
+.BR xmms2 (1),
+.BR xmms2d (1),
+.BR xmms2-launcher (1).
