@@ -4,6 +4,8 @@ Audiobooks on your XMMS2 playlist? Want to hear that part of the song right agai
 
 ## Installation
 
+Archlinux users have [a package in the AUR](https://aur.archlinux.org/packages/xmms2-reseeker/).
+
 This project uses [waf](https://code.google.com/p/waf/) to compile and install. To start it automatically at xmms2d launch, place a link in the configuration directory.
 
 ```bash
