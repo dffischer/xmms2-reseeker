@@ -14,9 +14,10 @@ whenever the player resumes from a pause. The amount can be given as only comman
 .B -h
 Causes the program to display a help text and exit immediately.
 .SH EXIT STATUS
+The program does not exit as long as the xmms2 server keeps running. When the server exits, the reseeker client goes down with it.
 .TP 8
 .B 0
-would indicate a successful termination. This never happens. The program keeps running indefinitely.
+indicates a successful termination. This happens when the xmms2 server shut down.
 .TP 8
 .B 1
 is returned when invoked with the

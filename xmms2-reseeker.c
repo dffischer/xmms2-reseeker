@@ -68,6 +68,10 @@ long check_strtol (char *str) {
   }
 }
 
+static int handle_server_quit(xmmsv_t *value, userdata *u) {
+  g_main_loop_quit (u->loop);
+}
+
 int main (int argc, char **argv) {
   userdata u;
 
@@ -111,8 +115,13 @@ int main (int argc, char **argv) {
   }
 
   xmmsc_mainloop_gmain_init (u.connection);
+
   xmmsc_result_t *result = xmmsc_broadcast_playback_status (u.connection);
   xmmsc_result_notifier_set (result, (xmmsc_result_notifier_t) handle_playback_status_change, &u);
+  xmmsc_result_unref (result);
+
+  result = xmmsc_broadcast_quit (u.connection);
+  xmmsc_result_notifier_set (result, (xmmsc_result_notifier_t) handle_server_quit, &u);
   xmmsc_result_unref (result);
 
   g_main_loop_run (u.loop);
