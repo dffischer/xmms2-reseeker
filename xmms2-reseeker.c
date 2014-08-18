@@ -104,18 +104,18 @@ int main (int argc, char **argv) {
 
   u.last_status = XMMS_PLAYBACK_STATUS_PAUSE;
 
-	u.loop = g_main_loop_new (NULL, FALSE);
+  u.loop = g_main_loop_new (NULL, FALSE);
   if (u.loop == NULL) {
     g_fprintf (stderr, "Could not create a main loop.\n");
     exit (EXIT_ERROR_GLIB);
   }
 
-	xmmsc_mainloop_gmain_init (u.connection);
-	xmmsc_result_t *result = xmmsc_broadcast_playback_status (u.connection);
+  xmmsc_mainloop_gmain_init (u.connection);
+  xmmsc_result_t *result = xmmsc_broadcast_playback_status (u.connection);
   xmmsc_result_notifier_set (result, (xmmsc_result_notifier_t) handle_playback_status_change, &u);
-	xmmsc_result_unref (result);
+  xmmsc_result_unref (result);
 
-	g_main_loop_run (u.loop);
+  g_main_loop_run (u.loop);
 
   xmmsc_unref (u.connection);
   return EXIT_ERROR_XMMS;
