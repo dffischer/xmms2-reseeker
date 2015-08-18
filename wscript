@@ -2,7 +2,7 @@
 
 def options(opt):
   opt.load('compiler_c')
-  opt.load('man', tooldir='waftools')
+  opt.load('man', tooldir='.')
 
 def configure(cnf):
   cnf.load('compiler_c')
