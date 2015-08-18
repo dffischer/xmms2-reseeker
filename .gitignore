@@ -1,4 +1,6 @@
 __pycache__
 .lock-*
+*/
+*.pkg.tar.xz
 *.expanded
 .SRCINFO
